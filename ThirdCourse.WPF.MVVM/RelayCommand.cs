@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Wpf120321
+namespace ThirdCourse.WPF.MVVM
 {
 
-    class RelayCommand : ICommand
+    public sealed class RelayCommand : ICommand
     {
 
         private Func<object, bool> _canExecute;

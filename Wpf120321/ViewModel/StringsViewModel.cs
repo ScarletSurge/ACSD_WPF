@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
+using ThirdCourse.WPF.MVVM;
+
 using Wpf120321.Model;
 
 namespace Wpf120321.ViewModel
@@ -18,6 +20,14 @@ namespace Wpf120321.ViewModel
         #region Command fields
 
         private ICommand _refreshStringsCommand;
+        private ICommand _switchBoolCommand;
+        private ICommand _requestRemovingCommand;
+
+        #endregion
+
+        #region Event fields
+
+        public event Action<StringsViewModel> RemovingRequested;
 
         #endregion
 
@@ -28,6 +38,7 @@ namespace Wpf120321.ViewModel
         public StringsViewModel()
         {
             _model = new StringsModel();
+            OnPropertyChanged(nameof(IsLeftStringVisible));
         }
 
         #endregion
@@ -59,10 +70,31 @@ namespace Wpf120321.ViewModel
             }
         }
 
+        public bool IsLeftStringVisible
+        {
+            get =>
+                _model.IsLeftStringVisible;
+
+            private set
+            {
+                _model.IsLeftStringVisible = value;
+                OnPropertiesChanged(nameof(IsLeftStringVisible));
+            }
+        }
+
+        //public string ButtonText =>
+        //IsLeftStringVisible ? "Switch to right" : "Switch to left";
+
         #region Command properties
 
         public ICommand RefreshStringsCommand =>
             _refreshStringsCommand ?? (_refreshStringsCommand = new RelayCommand(_ => RefreshStrings()));
+
+        public ICommand SwitchBoolCommand =>
+            _switchBoolCommand ?? (_switchBoolCommand = new RelayCommand(_ => SwitchStringsVisibility()));
+
+        public ICommand RequestRemovingCommand =>
+            _requestRemovingCommand ?? (_requestRemovingCommand = new RelayCommand(_ => RequestRemoving()));
 
         #endregion
 
@@ -91,6 +123,16 @@ namespace Wpf120321.ViewModel
             }
             First = sbFirst.ToString();
             Second = sbSecond.ToString();
+        }
+
+        private void SwitchStringsVisibility()
+        {
+            IsLeftStringVisible = !IsLeftStringVisible;
+        }
+
+        private void RequestRemoving()
+        {
+            RemovingRequested?.Invoke(this);
         }
 
         #endregion

@@ -23,6 +23,13 @@
             set;
         }
 
+        public bool IsLeftStringVisible
+        {
+            get;
+
+            set;
+        }
+
     }
 
 }
