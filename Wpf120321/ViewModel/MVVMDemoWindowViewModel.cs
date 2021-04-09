@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using System.Windows.Input;
 
 using ThirdCourse.WPF.MVVM;
@@ -12,6 +15,7 @@ namespace Wpf120321.ViewModel
         #region Fields
 
         private ObservableCollection<StringsViewModel> _strings;
+        private string _myStringFromViewModel;
 
         #region Command fields
 
@@ -44,6 +48,18 @@ namespace Wpf120321.ViewModel
             }
         }
 
+        public string MyStringFromViewModel
+        {
+            get =>
+                _myStringFromViewModel;
+
+            private set
+            {
+                _myStringFromViewModel = value;
+                OnPropertyChanged(nameof(MyStringFromViewModel));
+            }
+        }
+
         #region Command properties
 
         public ICommand AddStringsCommand =>
@@ -58,18 +74,28 @@ namespace Wpf120321.ViewModel
 
         private void AddStrings()
         {
-            var stringsViewModel = new StringsViewModel();
-            stringsViewModel.RemovingRequested += (itemToRemove) =>
-            {
-                Strings.Remove(itemToRemove);
-                //OnPropertyChanged(nameof(Strings));
+            //var stringsViewModel = new StringsViewModel();
+            //stringsViewModel.RemovingRequested += (itemToRemove) =>
+            //{
+            //    Strings.Remove(itemToRemove);
+            //    //OnPropertyChanged(nameof(Strings));
 
-                // SHITCODE DETECTED!!1!11
-                //var s = Strings;
-                //Strings = null;
-                //Strings = s;
-            };
-            Strings.Add(stringsViewModel);
+            //    // SHITCODE DETECTED!!1!11
+            //    //var s = Strings;
+            //    //Strings = null;
+            //    //Strings = s;
+            //};
+            //Strings.Add(stringsViewModel);
+            var alphabet = string.Concat(Enumerable.Range(0, 26).Select(i => (char)(i + 65)).Concat(
+                Enumerable.Range(0, 26).Select(i => (char)(i + 97))));
+            var random = new Random();
+            var firstNewLength = random.Next(10, 26);
+            var sbFirst = new StringBuilder(firstNewLength);
+            for (var i = 0; i < firstNewLength; i++)
+            {
+                sbFirst.Append(alphabet[random.Next(alphabet.Length)]);
+            }
+            MyStringFromViewModel = sbFirst.ToString();
         }
 
         private bool CanAddStrings()
