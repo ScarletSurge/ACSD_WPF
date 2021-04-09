@@ -48,6 +48,7 @@
     <Compile Include="Converter\Base\ConverterBase.cs" />
     <Compile Include="Converter\BoolToInvertedVisibilityConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\PercentageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelayCommand.cs" />
   </ItemGroup>

@@ -90,7 +90,8 @@
                     FontSize="40"
                     Content="+"
                     Command="{Binding AddStringsCommand}" />
-            <controls:StringsView DockPanel.Dock="Bottom" />
+            <controls:StringsView LeftString=""
+                                  DockPanel.Dock="Bottom" />
             <ScrollViewer>
                 <ItemsControl ItemsSource="{Binding Strings}">
                     <ItemsControl.ItemTemplate>

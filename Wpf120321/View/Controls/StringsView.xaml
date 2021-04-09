@@ -62,6 +62,7 @@
         <TextBlock Grid.Row="0"
                    Grid.RowSpan="2"
                    Grid.Column="2"
+                   FontSize="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:StringsView}}}"
                    Text="{Binding Second}">
             <TextBlock.Visibility>
                 <Binding Path="IsLeftStringVisible">

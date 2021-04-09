@@ -57,6 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="Model\StringsModel.cs" />
     <Compile Include="ViewModel\MVVMDemoWindowViewModel.cs" />
+    <Compile Include="ViewModel\SpinnerItemViewModel.cs" />
+    <Compile Include="View\Controls\Spinner.xaml.cs">
+      <DependentUpon>Spinner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\StringsView.xaml.cs">
       <DependentUpon>StringsView.xaml</DependentUpon>
     </Compile>
@@ -64,6 +68,13 @@
       <DependentUpon>MVVMDemoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\StringsViewModel.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Controls\Spinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\StringsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
