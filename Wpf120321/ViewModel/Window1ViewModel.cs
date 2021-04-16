@@ -9,12 +9,38 @@ namespace Wpf120321.ViewModel
     {
 
         private int _circlesCount;
+        private bool _isRotating;
+        private bool _isRotatingClockwise;
         private ICommand _decrementCirclesCountCommand;
         private ICommand _incrementCirclesCountCommand;
 
         public Window1ViewModel()
         {
             CirclesCount = 3;
+        }
+
+        public bool IsRotating
+        {
+            get =>
+                _isRotating;
+
+            set
+            {
+                _isRotating = value;
+                OnPropertyChanged(nameof(IsRotating));
+            }
+        }
+
+        public bool IsRotatingClockwise
+        {
+            get =>
+                _isRotatingClockwise;
+
+            set
+            {
+                _isRotatingClockwise = value;
+                OnPropertyChanged(nameof(IsRotatingClockwise));
+            }
         }
 
         public int CirclesCount

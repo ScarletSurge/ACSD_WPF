@@ -21,6 +21,10 @@ namespace Wpf120321.View.Controls
             InitializeComponent();
             _rotationTimer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 25), DispatcherPriority.Normal, (sender, eventArgs) =>
             {
+                if (!IsWorking)
+                {
+                    return;
+                }
                 lock (_syncObject)
                 {
                     for (var i = 0; i < Items.Length; i++)
@@ -30,6 +34,17 @@ namespace Wpf120321.View.Controls
                 }
             }, Dispatcher.CurrentDispatcher);
         }
+
+        public bool IsWorking
+        {
+            get =>
+                (bool)GetValue(IsWorkingProperty);
+
+            set =>
+                SetValue(IsWorkingProperty, value);
+        }
+        public static readonly DependencyProperty IsWorkingProperty = DependencyProperty.Register(
+            nameof(IsWorking), typeof(bool), typeof(Spinner));
 
         public int CirclesCount
         {
