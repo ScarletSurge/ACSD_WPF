@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+
+using Wpf120321.Data;
 using Wpf120321.ViewModel;
 
 namespace Wpf120321.View.Controls
@@ -34,7 +25,7 @@ namespace Wpf120321.View.Controls
                 {
                     for (var i = 0; i < Items.Length; i++)
                     {
-                        Items[i].Angle = (Items[i].Angle + 5) % 360;
+                        Items[i].Angle = (Items[i].Angle + (Direction == RotationDirection.Clockwise ? 5 : -5)) % 360;
                     }
                 }
             }, Dispatcher.CurrentDispatcher);
@@ -53,6 +44,11 @@ namespace Wpf120321.View.Controls
             {
                 var oldCountValue = (int)eventArgs.OldValue;
                 var newCountValue = (int)eventArgs.NewValue;
+
+                if (newCountValue < 0)
+                {
+                    return;
+                }
 
                 var targetSpinner = sender as Spinner;
 
@@ -75,6 +71,17 @@ namespace Wpf120321.View.Controls
 
                 targetSpinner.Items = newItems;
             }));
+
+        public RotationDirection Direction
+        {
+            get =>
+                (RotationDirection)GetValue(DirectionProperty);
+
+            set =>
+                SetValue(DirectionProperty, value);
+        }
+        public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register(
+            nameof(Direction), typeof(RotationDirection), typeof(Spinner), new PropertyMetadata(RotationDirection.Clockwise));
 
         public SpinnerItemViewModel[] Items
         {

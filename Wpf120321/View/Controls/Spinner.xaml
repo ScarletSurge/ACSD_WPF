@@ -56,7 +56,6 @@
                                 </Binding>
                             </RotateTransform.CenterY>
                         </RotateTransform>
-                        
                     </Setter.Value>
                 </Setter>
             </Style>

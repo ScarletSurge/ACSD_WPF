@@ -4,15 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Wpf120321.View.Controls"
-        mc:Ignorable="d">
+        xmlns:viewModels="clr-namespace:Wpf120321.ViewModel"
+        mc:Ignorable="d"
+        FontSize="50">
+    <Window.DataContext>
+        <viewModels:Window1ViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <controls:Spinner Grid.Column="0"
-                          HorizontalAlignment="Center"
+                          HorizontalAlignment="Stretch"
                           VerticalAlignment="Center"
-                          CirclesCount="3" />
+                          CirclesCount="{Binding CirclesCount}"
+                          Direction="Clockwise" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.ColumnSpan="3"
+                           TextAlignment="Center"
+                           Text="Circles count:" />
+                <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Content="-"
+                        Command="{Binding DecrementCirclesCountCommand}" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding CirclesCount}" />
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Content="+"
+                        Command="{Binding IncrementCirclesCountCommand}" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

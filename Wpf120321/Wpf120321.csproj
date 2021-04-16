@@ -56,8 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\StringsModel.cs" />
+    <Compile Include="Data\RotationDirection.cs" />
     <Compile Include="ViewModel\MVVMDemoWindowViewModel.cs" />
     <Compile Include="ViewModel\SpinnerItemViewModel.cs" />
+    <Compile Include="ViewModel\Window1ViewModel.cs" />
     <Compile Include="View\Controls\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
