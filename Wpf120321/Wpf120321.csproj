@@ -61,6 +61,7 @@
     <Compile Include="ViewModel\MVVMDemoWindowViewModel.cs" />
     <Compile Include="ViewModel\SpinnerItemViewModel.cs" />
     <Compile Include="ViewModel\Window1ViewModel.cs" />
+    <Compile Include="View\Attached\ButtonAttachedProperties.cs" />
     <Compile Include="View\Controls\Spinner.xaml.cs">
       <DependentUpon>Spinner.xaml</DependentUpon>
     </Compile>
